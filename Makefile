@@ -104,7 +104,7 @@ downloads :
 	$(CURL) '$(TEST_DEP_3_STABLE_URL)' > '$(TEST_DIR)/$(TEST_DEP_3).el'
 
 downloads-latest :
-	$(CURL) '$(TEST_DEP_1_LATEST_URL)' > '$(TEST_DIR)/$(TEST_DEP_1).el'
+	# $(CURL) '$(TEST_DEP_1_LATEST_URL)' > '$(TEST_DIR)/$(TEST_DEP_1).el'
 	$(CURL) '$(TEST_DEP_2_LATEST_URL)' > '$(TEST_DIR)/$(TEST_DEP_2).el'
 	$(CURL) '$(TEST_DEP_3_LATEST_URL)' > '$(TEST_DIR)/$(TEST_DEP_3).el'
 
