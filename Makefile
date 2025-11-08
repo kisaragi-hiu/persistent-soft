@@ -114,7 +114,7 @@ test-travis :
 test-tests :
 	@perl -ne 'if (m/^\s*\(\s*ert-deftest\s*(\S+)/) {die "$$1 test name duplicated in $$ARGV\n" if $$dupes{$$1}++}' '$(TEST_DIR)/'*-test.el
 
-test-prep : build test-dep-1 test-dep-2 test-dep-3 test-autoloads test-travis test-tests
+test-prep : build test-dep-1 test-dep-2 test-dep-3 test-autoloads test-tests
 
 test-batch :
 	@cd '$(TEST_DIR)'                                 && \
