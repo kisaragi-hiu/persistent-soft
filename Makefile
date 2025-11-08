@@ -40,15 +40,19 @@ TEST_DEP_2_LATEST_URL=https://raw.githubusercontent.com/sigma/pcache/master/pcac
 TEST_DEP_3=list-utils
 TEST_DEP_3_STABLE_URL=https://raw.githubusercontent.com/rolandwalker/list-utils/ecd6c91c71e37734af9ff4df003cb96b9d236a97/list-utils.el
 TEST_DEP_3_LATEST_URL=https://raw.githubusercontent.com/rolandwalker/list-utils/master/list-utils.el
+TEST_DEP_COMPAT_CLLIB=cl-lib
+TEST_DEP_COMPAT_CLLIB_URL=https://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/cl-lib.el?h=externals/cl-lib
 
 .PHONY : build dist not-dirty pkg-version downloads downloads-latest autoloads \
  test-autoloads test-travis test test-prep test-batch test-interactive         \
  test-tests clean edit run-pristine run-pristine-local upload-github           \
  upload-wiki upload-marmalade test-dep-1 test-dep-2 test-dep-3 test-dep-4      \
  test-dep-5 test-dep-6 test-dep-7 test-dep-8 test-dep-9
+.PHONY : downloads-compat-cllib
 
 build :
-	$(RESOLVED_EMACS) $(EMACS_BATCH) --eval    \
+	$(RESOLVED_EMACS) $(EMACS_BATCH)           \
+        -L '$(TEST_DIR)' --eval                   \
 	    "(progn                                \
 	      (setq byte-compile-error-on-warn t)  \
 	      (batch-byte-compile))" *.el
@@ -87,6 +91,9 @@ test-dep-3 :
 	       (package-initialize))                         \
 	      (require '$(TEST_DEP_3)))"                  || \
 	(echo "Can't load test dependency $(TEST_DEP_3).el, run 'make downloads' to fetch it" ; exit 1)
+
+downloads-compat-cllib :
+	$(CURL) '$(TEST_DEP_COMPAT_CLLIB_URL)' > '$(TEST_DIR)/$(TEST_DEP_COMPAT_CLLIB).el'
 
 downloads :
 	$(CURL) '$(TEST_DEP_1_STABLE_URL)' > '$(TEST_DIR)/$(TEST_DEP_1).el'

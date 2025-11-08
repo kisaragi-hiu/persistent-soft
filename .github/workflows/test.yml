@@ -29,8 +29,13 @@ jobs:
         uses: purcell/setup-emacs@master
         with:
           version: ${{ matrix.emacs_version }}
-      - name: Downloads (23, 24)
-        if: ${{ startsWith(matrix.emacs_version, '24') || startsWith(matrix.emacs_version, '23') }}
+      - name: Downloads (23)
+        if: ${{ startsWith(matrix.emacs_version, '23') }}
+        run: |
+          make downloads
+          make downloads-compat-cllib
+      - name: Downloads (24)
+        if: ${{ startsWith(matrix.emacs_version, '24') }}
         run: |
           make downloads
       - name: Downloads
