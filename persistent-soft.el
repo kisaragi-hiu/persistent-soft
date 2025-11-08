@@ -1,4 +1,4 @@
-;;; persistent-soft.el --- Persistent storage, returning nil on failure
+;;; persistent-soft.el --- Persistent storage, returning nil on failure  -*- lexical-binding: nil; -*-
 ;;
 ;; Copyright (c) 2012-2015 Roland Walker
 ;;
