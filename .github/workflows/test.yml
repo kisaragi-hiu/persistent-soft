@@ -1,0 +1,42 @@
+name: "Test"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        emacs_version:
+          # though 23.3 is promised in readme, it's not provided by nix-emacs-ci.
+          # 23.4 is the earliest provided version.
+          - 23.4
+          - 24.3 # promised in readme
+          - 24.5 # last version of 24
+          - 25.3
+          - 26.3
+          - 27.2
+          - 28.2
+          - 29.4
+          - 30.2
+          - snapshot
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: ${{ matrix.emacs_version }}
+      - name: Downloads (23, 24)
+        if: ${{ startsWith(matrix.emacs_version, '24') || startsWith(matrix.emacs_version, '23') }}
+        run: |
+          make downloads
+      - name: Downloads
+        if: ${{ ! ( startsWith(matrix.emacs_version, '24') || startsWith(matrix.emacs_version, '23') ) }}
+        run: |
+          make downloads-latest
+      - name: Test
+        run: |
+          make test
