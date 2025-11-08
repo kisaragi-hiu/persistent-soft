@@ -32,8 +32,10 @@ TRAVIS_FILE=.travis.yml
 TEST_DIR=ert-tests
 TEST_DATADIR=test_output
 TEST_DEP_1=ert
-TEST_DEP_1_STABLE_URL=http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/emacs-lisp/ert.el?h=emacs-24.3
-TEST_DEP_1_LATEST_URL=http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/emacs-lisp/ert.el?h=master
+# Original http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/emacs-lisp/ert.el?h=emacs-24.3
+TEST_DEP_1_STABLE_URL=https://raw.githubusercontent.com/emacs-mirror/emacs/refs/tags/emacs-24.3/lisp/emacs-lisp/ert.el
+# Original http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/emacs-lisp/ert.el?h=master
+TEST_DEP_1_LATEST_URL=https://raw.githubusercontent.com/emacs-mirror/emacs/refs/heads/master/lisp/emacs-lisp/ert.el
 TEST_DEP_2=pcache
 TEST_DEP_2_STABLE_URL=https://raw.githubusercontent.com/sigma/pcache/fa8f863546e2e8f2fc0a70f5cc766a7f584e01b6/pcache.el
 TEST_DEP_2_LATEST_URL=https://raw.githubusercontent.com/sigma/pcache/master/pcache.el
@@ -41,7 +43,8 @@ TEST_DEP_3=list-utils
 TEST_DEP_3_STABLE_URL=https://raw.githubusercontent.com/rolandwalker/list-utils/ecd6c91c71e37734af9ff4df003cb96b9d236a97/list-utils.el
 TEST_DEP_3_LATEST_URL=https://raw.githubusercontent.com/rolandwalker/list-utils/master/list-utils.el
 TEST_DEP_COMPAT_CLLIB=cl-lib
-TEST_DEP_COMPAT_CLLIB_URL=https://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/cl-lib.el?h=externals/cl-lib
+# Original https://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/cl-lib.el?h=externals/cl-lib
+TEST_DEP_COMPAT_CLLIB_URL=https://raw.githubusercontent.com/emacs-straight/cl-lib/refs/heads/master/cl-lib.el
 
 .PHONY : build dist not-dirty pkg-version downloads downloads-latest autoloads \
  test-autoloads test-travis test test-prep test-batch test-interactive         \
