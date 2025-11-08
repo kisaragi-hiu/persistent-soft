@@ -265,7 +265,9 @@
                    (persistent-soft-fetch 'lambda-key "ert-test-persistent-soft-location-1")))))
 
 (ert-deftest persistent-soft-a:g-data-types-15 nil
-  (let ((value (make-byte-code '(args) nil nil 0)))
+  (let ((value (if (version< emacs-version "28")
+                   (make-byte-code '(args) nil nil 0)
+                 (make-byte-code '(args) "" [] 0))))
     (should
      (persistent-soft-store 'byte-code-key value "ert-test-persistent-soft-location-1"))
     (should
