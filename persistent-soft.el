@@ -182,7 +182,7 @@
 
 This is portable to versions of Emacs without dynamic `flet`."
   (declare (debug t) (indent 2))
-  (let ((o (gensym "--function--")))
+  (let ((o (cl-gensym "--function--")))
     `(let ((,o (ignore-errors (symbol-function ,func))))
        (fset ,func #'(lambda (&rest _ignored) ,ret-val))
        (unwind-protect
@@ -252,7 +252,7 @@ by setting `persistent-soft-inhibit-sanity-checks'."
           (mapcar 'persistent-soft--sanitize-data data)))))
     ((hash-table-p data)
      (let ((cleaned-hash (copy-hash-table data))
-           (default-value (gensym)))
+           (default-value (cl-gensym)))
        (maphash #'(lambda (k v)
                     (let ((new-k (persistent-soft--sanitize-data k))
                           (new-v (persistent-soft--sanitize-data v)))
